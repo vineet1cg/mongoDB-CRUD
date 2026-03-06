@@ -1,75 +1,67 @@
-# MongoDB Task - User CRUD API
+# MongoDB CRUD API
 
-A simple Node.js and Express application demonstrating CRUD (Create, Read, Update, Delete) operations with MongoDB using Mongoose.
+A Node.js and Express REST API for MongoDB CRUD operations using Mongoose.
 
 ## Features
 
-- **User Management**: Create single or multiple users, fetch all users, or find a specific user by ID.
-- **Updates**: Update user information using both `PUT` (full update) and `PATCH` (partial update for name).
-- **Deletion**: Remove users from the database by ID.
-- **Environment Driven**: Configuration via environment variables.
+- Create single/bulk users
+- Read all users or by ID
+- Update user (PUT full, PATCH partial)
+- Delete user by ID
 
 ## Tech Stack
 
-- **Node.js**
-- **Express.js**
-- **MongoDB** (via **Mongoose**)
-- **CORS**
-- **Dotenv**
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- CORS
+- Dotenv
 
-## Getting Started
+## Quick Start
 
-### Prerequisites
-
-- Node.js installed
-- MongoDB instance (local or Atlas)
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd task
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Configure environment variables:
-   Create a `.env` file in the root directory and add the following:
-   ```env
-   PORT=3000
-   MongoDB_URI=your_mongodb_connection_string
-   ```
-
-### Running the Server
-
-Start the server using:
 ```bash
+npm install
 npm start
 ```
-The server will be running on the port specified in your `.env` file (defaulting to 3000).
+
+## Environment Variables
+
+Create a `.env` file:
+
+```env
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/crud
+```
 
 ## API Endpoints
 
 | Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/` | Health check |
-| `POST` | `/one` | Create a single user |
-| `POST` | `/many` | Bulk create users |
-| `GET` | `/users` | Get all users |
-| `GET` | `/users/:id` | Get user by ID |
-| `PUT` | `/users/:id` | Update user by ID |
-| `PATCH` | `/users/name/:id` | Update user name by ID |
-| `DELETE` | `/users/:id` | Delete user by ID |
+|--------|----------|-------------|
+| GET | `/` | Health check |
+| POST | `/one` | Create single user |
+| POST | `/many` | Bulk create users |
+| GET | `/users` | Get all users |
+| GET | `/users/:id` | Get user by ID |
+| PUT | `/users/:id` | Full update |
+| PATCH | `/users/name/:id` | Update name only |
+| DELETE | `/users/:id` | Delete user |
 
-## Schema
+## Request/Response Examples
 
-```javascript
-{
-  name: String,
-  password: String
-}
+**Create User:**
+```json
+POST /one
+{ "name": "John", "password": "123" }
 ```
+
+## Deploy on Render
+
+1. Push code to GitHub
+2. Create new Web Service on Render
+3. Set environment variables:
+   - `MONGO_URI` - Your MongoDB connection string
+   - `PORT` - (Render auto-sets this)
+
+## License
+
+ISC
