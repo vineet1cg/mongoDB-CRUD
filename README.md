@@ -35,9 +35,11 @@ MONGO_URI=mongodb://localhost:27017/crud
 
 ## API Endpoints
 
+**User Model:** `{ name: String, password: String }`
+
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/` | Health check |
+| GET | `/` | Health check (returns "Server is running!") |
 | POST | `/one` | Create single user |
 | POST | `/many` | Bulk create users |
 | GET | `/users` | Get all users |
@@ -52,6 +54,25 @@ MONGO_URI=mongodb://localhost:27017/crud
 ```json
 POST /one
 { "name": "John", "password": "123" }
+```
+
+Response:
+```json
+{
+  "message": "User created!",
+  "user": { "name": "John", "password": "123", "_id": "..." }
+}
+```
+
+**Delete User:**
+```json
+DELETE /users/:id
+
+Response:
+{
+  "message": "User deleted!",
+  "user": { "name": "John", "password": "123", "_id": "..." }
+}
 ```
 
 ## Deploy on Render
